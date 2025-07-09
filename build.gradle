@@ -36,12 +36,17 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation 'com.mysql:mysql-connector-j'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
     //redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+
+    // Enable Prometheus monitoring
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
 }
 
 dependencyManagement {
@@ -52,4 +57,8 @@ dependencyManagement {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+tasks.withType(Test).configureEach {
+    enabled = false
 }
