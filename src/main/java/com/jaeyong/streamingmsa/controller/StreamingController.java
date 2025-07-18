@@ -31,7 +31,7 @@ public class StreamingController {
                     .badRequest()
                     .body(result);
         }
-
+        System.out.println("로드밸런싱 확인");
         return ResponseEntity.ok(result);
     }
 
@@ -47,6 +47,7 @@ public class StreamingController {
                     .badRequest()
                     .body(result);
         }
+
         return ResponseEntity.ok(result);
     }
 }
