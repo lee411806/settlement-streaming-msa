@@ -39,9 +39,9 @@ public class VideoViewHelper {
     public PauseResponse createVideoViewHistory(Long userId, Long videoId, Long currentPosition) {
         Long videoLength = videoRepository.findVideoLengthById(videoId);
 
-        if (videoLength == null) {
-            throw new EntityNotFoundException("해당 Video가 존재하지 않습니다.");
-        }
+//        if (videoLength == null) {
+//            throw new EntityNotFoundException("해당 Video가 존재하지 않습니다.");
+//        }
 
         //  비교 로직 유지
         if(!validateCurrentPosition(currentPosition, videoLength)){
@@ -57,11 +57,9 @@ public class VideoViewHelper {
         return new PauseResponse(true, "정지 위치 저장 완료");
     }
 
+
     // 현재 재생 위치가 영상 길이를 초과하는지 체크
     private boolean validateCurrentPosition(Long currentPosition, Long videoLength) {
-        if (currentPosition > videoLength) {
-            return false;
-        }
-        return true;
+        return currentPosition <= videoLength;
     }
 }

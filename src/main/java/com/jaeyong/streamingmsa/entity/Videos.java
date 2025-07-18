@@ -30,7 +30,8 @@ public class Videos {
     @Column(nullable = false)
     private Integer duration;
 
-    @OneToMany(mappedBy = "video", cascade = CascadeType.ALL)
+    //지연 로딩
+    @OneToMany(mappedBy = "video", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AdVideos> ads = new ArrayList<>();  // Video에 포함된 광고 리스트
 
 }

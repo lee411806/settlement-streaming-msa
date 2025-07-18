@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VideoRepository extends JpaRepository<Videos, Long> {
-    @Query("SELECT v.duration FROM Videos v WHERE v.id = :videoId")
+    @Query(value = "SELECT duration FROM videos WHERE id = :videoId", nativeQuery = true)
     Long findVideoLengthById(@Param("videoId") Long videoId);
 }
